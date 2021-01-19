@@ -19,7 +19,8 @@ def main(args):
     if args['fb_sort']:
         input_files = sorted(input_files, key = lambda x: int(x.split('_')[0]))
 
-    for file_name in input_files:        
+    for i in range(len(input_files)):
+        file_name = input_files[i]        
         fn = mypath+file_name
         im = Image.open(fn)
         
@@ -34,7 +35,7 @@ def main(args):
         exif_bytes = piexif.dump(exif_dict)
         
         im.save(fn, exif=exif_bytes)
-        print(f"Wrote to: {file_name}")
+        print(f"Wrote to: {file_name} {i}/{num_files}")
 
 class TimeGenerator:
     def __init__(self, start_year, end_year, num_items):
