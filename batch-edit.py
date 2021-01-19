@@ -35,7 +35,7 @@ def main(args):
         exif_bytes = piexif.dump(exif_dict)
         
         im.save(fn, exif=exif_bytes)
-        print(f"Wrote to: {file_name} {i}/{num_files}")
+        print(f"Wrote to: {file_name} {i+1}/{num_files}")
 
 class TimeGenerator:
     def __init__(self, start_year, end_year, num_items):
