@@ -19,9 +19,7 @@ def main(args):
     if args['fb_sort']:
         input_files = sorted(input_files, key = lambda x: int(x.split('_')[0]))
 
-    for file_name in input_files:
-        print(file_name)
-        
+    for file_name in input_files:        
         fn = mypath+file_name
         im = Image.open(fn)
         
@@ -36,6 +34,7 @@ def main(args):
         exif_bytes = piexif.dump(exif_dict)
         
         im.save(fn, exif=exif_bytes)
+        print(f"Wrote to: {file_name}")
 
 class TimeGenerator:
     def __init__(self, start_year, end_year, num_items):
@@ -60,6 +59,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--input', help='input dir, please use absolute, with trailing slash', default="./input/")
     parser.add_argument('--mutate', help='If true, it will modify the exif data in place', default=True)
+    # parser.add_argument('--output', help='output dir, please use absolute, with trailing slash', default="./output/")
     parser.add_argument('--start-yr', help='Start year, inclusive', default=2015)
     parser.add_argument('--end-yr', help='End year, inclusive', default=2020)
     parser.add_argument('--fb-sort', help='Assuming images are named facebook wise', default=True)
