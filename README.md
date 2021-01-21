@@ -30,6 +30,30 @@ sudo apt-get install imagemagick
 mogrify -format jpg *.png
 ```
 
+### FB DOWNLOAD
+
+Go into your user account data on facebook, and request a data download of all your phots and messages.
+The messages are the important one. If you have a lot of photos/messages, it might generate multiple zip files to
+download. Extract them all. Here's an example command that I use to retrieve photos from a particular folder.
+The purpose of this is to collect all the FB images into one folder. I have no idea how FB splits images into particular folders,
+but the idea is you need to merge them into one target folder.
+```
+cp facebook-shihaocao5.4/messages/inbox/hammockhomies_kvox9tyodg/photos/* homies/
+```
+
+Here's a helpful command to list out the number of items in a folder that end in .jpg
+```
+ls -1 *.jpg | wc -l
+```
+
+This is how you delete all files that end in `.png`
+```
+rm *.png
+```
+
+Then within your collected folder make sure to change all png's to jpgs if needed, and delete the old pngs
+too. Now your can use the included script to `exif-interpolate` things.
+
 ### INSTALL
 
 Use a virtualenv if you want:
