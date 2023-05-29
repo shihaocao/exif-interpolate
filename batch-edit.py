@@ -29,6 +29,7 @@ def main(args):
     # get the files
     mypath = args["input"]
     input_files = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+    input_files = sorted(input_files)
     num_files = len(input_files)
     
     # construct time generator
@@ -39,7 +40,7 @@ def main(args):
 
     exif_bytes_list = generate_exif_data(time_generator, num_files)
 
-    with concurrent.futures.ThreadPoolExecutor() as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=7) as executor:
         file_futures = []
         for file_name, exif_bytes in zip(input_files, exif_bytes_list):
             file_futures.append(executor.submit(process_file, file_name, mypath, exif_bytes))
